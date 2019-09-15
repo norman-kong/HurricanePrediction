@@ -1,0 +1,138 @@
+ENVIRONMENTS AND PACKAGES:
+
+PYTHON VIRTUAL ENV:
+
+virtualenv cc_hack
+source cc_hack/bin/activate 
+pip install h5py
+
+
+ipython:
+
+>import h5py                                                             
+>h5py.run_tests()
+
+this gave several errors like:
+
+"_______________________________ TestDeprecations.test_highlevel_access ________________________________
+
+self = <h5py.tests.hl.test_deprecation.TestDeprecations testMethod=test_highlevel_access>
+
+    def test_highlevel_access(self):
+        warning_message = (
+            "The h5py.highlevel module is deprecated, code should import "
+            "directly from h5py, e.g. 'from h5py import File'."
+        )
+>       with self.assertWarnsRegex(H5pyDeprecationWarning, warning_message) as warning:
+E       NameError: name 'H5pyDeprecationWarning' is not defined
+
+/anaconda3/lib/python3.7/site-packages/h5py/tests/hl/test_deprecation.py:26: NameError"
+
+1 failed, 487 passed, 17 skipped, 6 xfailed, 539 warnings in 2.28 seconds
+
+Tried to find solution, but couldn't find one, so I tried a CONDA ENV:
+
+conda create --name cc_hack
+conda install h5py
+
+
+QUICKSTART WITH GOOGLE CLOUD: https://cloud.google.com/sdk/docs/quickstart-macos
+
+gcloud init
+
+configuration has been set to: [default]
+You are logged in as: [normankong3@gmail.com].
+
+But then:
+
+WARNING: Listing available projects failed: There was a problem refreshing your current auth tokens: invalid_grant: Bad Request
+Please run:
+
+  $ gcloud auth login
+
+to obtain new credentials, or if you have already logged in with a
+different account:
+
+  $ gcloud config set account ACCOUNT
+
+
+Your current project has been set to: [cc-hack].
+
+
+gcloud auth list
+
+
+
+* Run `gcloud --help` to see the Cloud Platform services you can interact with. And run `gcloud help COMMAND` to get help on any gcloud command.
+
+gcloud auth login
+
+Your current project is [cc-hack].  You can change this setting by running:
+  $ gcloud config set project PROJECT_ID
+
+viewing the bucket which contains the ExtremeWeather Data:
+gsutil ls -r gs://datasetsaillh19
+
+INSTALLING GCSFUSE: https://github.com/GoogleCloudPlatform/gcsfuse/blob/master/docs/installing.md
+
+installed osxfuse, then:
+brew install gcsfuse
+
+Then, it seemed my credentials were no longer valid, so:
+
+gcloud auth application-default login
+
+https://cloud.google.com/storage/docs/gcs-fuse
+
+I was then referred to a browser to confirm my log in for my Google account, then this was returned:
+
+Credentials saved to file: [/Users/normankong/.config/gcloud/application_default_credentials.json]
+
+
+USING GCSFUSE: https://cloud.google.com/storage/docs/gcs-fuse
+
+Creating a data folder:
+cd Desktop
+mkdir data
+
+gcsfuse datasetsaillh19 Desktop/data/
+
+
+In python (in my terminal):
+
+>>> import h5py
+>>> data_path = "./climo_1979.h5"
+>>> h5f = h5py.File(data_path, 'r')
+>>> images = h5f["images"]
+>>> images
+<HDF5 dataset "images": shape (1460, 16, 768, 1152), type "<f4">
+
+works!
+
+Documentation: https://github.com/GoogleCloudPlatform/gcsfuse
+useful link for gcsfuse mounting: https://github.com/GoogleCloudPlatform/gcsfuse/blob/master/docs/mounting.md
+
+Jupyter wasn't in my env for some reason (TODO: figure this out lol); when I did "jupyter --version" or "jupyter notebook", it said "jupyter: command not found", so:
+
+conda install jupyter
+
+
+conda install
+
+conda install scikit-learn
+conda install -c conda-forge statsmodels
+
+
+
+conda install memory_profiler
+
+
+https://gist.github.com/pratos/e167d4b002f5d888d0726a5b5ddcca57
+
+
+
+
+
+
+
+

@@ -1,0 +1,39 @@
+paper: https://papers.nips.cc/paper/6932-extremeweather-a-large-scale-climate-dataset-for-semi-supervised-detection-localization-and-understanding-of-extreme-weather-events.pdf
+
+We consider the CAM5 (Community Atmospheric Model v5) simulation, which is a standardized three-dimensional, physical model of the atmosphere used by the climate community to simulate the global climate (Conley et al., 2012). When it is configured at 25-km spatial resolution (Wehner et al., 2015), each snapshot of the global atmospheric state in the CAM5 model output is a 768x1152 image, having 16 ’channels’, each corresponding to a different simulated variable (like surface temperature, surface pressure, precipitation, zonal wind, meridional wind, humidity, cloud fraction, water vapor, etc.). The global climate is simulated at a temporal resolution of 3 hours, giving 8 snapshots (images) per day. The data we provide is from a simulation of 27 years from 1979 to 2005. In total, this gives 78,840 16-channel 768x1152 images.
+
+
+
+
+
+Every other image (i.e. 4 per day) is labeled due to certain design decisions made during the production run of the TECA code. 
+
+
+predicting hurricane vs not hurricane because:
+
+TECA, the ground truth labeling framework, implements heuristics to assign ’ground truth’ labels for the four types of extreme weather events. However, it is entirely possible there are errors in the labeling: for instance, there is little agreement in the climate community on a standard heuristic for capturing Extra-Tropical Cyclones (Neu et al., 2013); Atmospheric Rivers have been extensively studied in the northern hemisphere (Lavers et al., 2012; Dettinger et al., 2011), but not in the southern hemisphere; and spatial extents of such events not universally agreed upon. In addition, this labeling only includes AR’s in the US and not in Europe. As such, there is potential for many false negatives, resulting in partially annotated images. Lastly, it is worth mentioning that because the ground truth generation is a simple automated method, a deep, supervised method can only do as well as emulating this class of simple functions. This, in addition to lower representation for some classes (AR and TD), is part of our motivation in exploring semi-supervised methods to better understand the features underlying extreme weather events rather than trying to "beat" existing techniques.
+
+
+
+Tropical Cyclones (TC), Extra-Tropical Cyclones (ETC), Tropical Depressions (TD), and United States Atmospheric Rivers (US-AR)
+
+
+Small: (1979 train, 1981 validation, 1984 test)
+
+split:	TC 				ETC 				TD
+
+train 3190(42.32)		3510(46.57)			433(5.74)
+test  2882(39.04)		3430(46.47) 		697(9.44)
+
+It is interesting to note that 3D models perform significantly better than their 2D counterparts for ETC and TC (hurricane) classes. This implies that the time evolution of these weather events is an important criteria for discriminating them.
+
+
+
+
+
+
+
+
+
+
+

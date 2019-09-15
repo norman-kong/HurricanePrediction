@@ -21,10 +21,15 @@ search the 15 rows of each image and keep every image that has a hurricane as a 
 
 - eventually: multi class classification?
 
+- eventually: using more data, training across years (ex: train on 1 year, validate on the next, then test on the next after that) - requires computing in the cloud, huge amounts of data. 
+
+note on accessing the full dataset- 
+Accessing the google bucket: because of GCS FUSE ("Cloud Storage FUSE is an open source FUSE adapter that allows you to mount Cloud Storage buckets as file systems on Linux or macOS systems."), can treat google buckets as files and directories. cool stuff
+
+path: 'Users/normankong/Desktop/data'
+
 also todo (personal thing):
 check the reshape function when flattening the data for ease of manipulation:
-
-flatten function?
 
 ```
 # Flattening image dimensions into 1 array
@@ -37,7 +42,7 @@ samples = np.resize(samples,(772,884736))
 print(samples.shape)
 print(samples)
 ```
-
+look into flatten function??
 
 Authors:
 Norman Kong <br>
