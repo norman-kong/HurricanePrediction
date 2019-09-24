@@ -46,6 +46,6 @@ print(samples)
 ```
 look into flatten function??
 
-Authors:
+Authors: <br>
 Norman Kong <br>
 Oliver Miller
