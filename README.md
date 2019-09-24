@@ -23,6 +23,8 @@ search the 15 rows of each image and keep every image that has a hurricane as a 
 
 - eventually: using more data, training across years (ex: train on 1 year, validate on the next, then test on the next after that) - requires computing in the cloud, huge amounts of data. 
 
+- fix binder
+
 note on accessing the full dataset- 
 Accessing the google bucket: because of GCS FUSE ("Cloud Storage FUSE is an open source FUSE adapter that allows you to mount Cloud Storage buckets as file systems on Linux or macOS systems."), can treat google buckets as files and directories. cool stuff
 
